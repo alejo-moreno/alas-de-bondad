@@ -1,5 +1,7 @@
 ---
 import Container from "@/components/layout/Container.astro";
+import FacebookIcon from "@/components/ui/FacebookIcon.astro";
+import InstagramIcon from "@/components/ui/InstagramIcon.astro";
 import WhatsAppCta from "@/components/site/WhatsAppCta.astro";
 import { site } from "@/config/site";
 import { navigation } from "@/content/navigation";
@@ -71,17 +73,19 @@ const cityLine = [site.location.city, site.location.region, site.location.countr
           </ul>
         )
       }
-      <p class="mt-4 flex flex-wrap gap-x-4 gap-y-1">
+      <p class="mt-4 flex flex-wrap gap-x-4 gap-y-2">
         {
           !isPlaceholder(site.social.instagram) && (
-            <a href={site.social.instagram} class="hover:underline">
+            <a href={site.social.instagram} class="inline-flex items-center gap-2 hover:underline">
+              <InstagramIcon />
               Instagram
             </a>
           )
         }
         {
           !isPlaceholder(site.social.facebook) && (
-            <a href={site.social.facebook} class="hover:underline">
+            <a href={site.social.facebook} class="inline-flex items-center gap-2 hover:underline">
+              <FacebookIcon />
               Facebook
             </a>
           )

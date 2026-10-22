@@ -10,9 +10,9 @@ export const nosotros = {
     lede: "Llevamos bienestar y esperanza. Creamos oportunidades, fortalecemos capacidades y trabajamos de la mano con familias, voluntarios, empresas y aliados.",
   },
   body: [
-    "Fundación Alas de Bondad existe para mejorar la calidad de vida de personas con discapacidad, madres cuidadoras, niños y familias que atraviesan situaciones económicas o sociales complejas.",
-    "Brindamos apoyo, orientación, formación, generación de ingresos y acompañamiento. El propósito no es un lema aparte del trabajo: es lo que buscamos en cada vínculo — bienestar, esperanza y un impacto concreto en la comunidad.",
-    "Contamos con una alianza con Best Buddies que nos ha acercado a procesos de inclusión laboral. Aun así, muchos jóvenes con discapacidad de nuestra región siguen encontrando barreras para entrar y permanecer en ese tipo de programas. Por eso fortalecemos la atención desde Madrid, Cundinamarca, y de ahí hacia los municipios cercanos.",
+    "En Fundación Alas de Bondad nacimos de una certeza: un pequeño gesto de generosidad puede cambiar una vida para siempre. Crecimos en un hogar modesto donde la solidaridad nos devolvió la esperanza, y donde la convivencia con la discapacidad de mi hermano nos enseñó que el verdadero valor de una sociedad se mide en las oportunidades reales que brinda a quienes suelen olvidar.",
+    "Esa enseñanza nos impulsó a actuar. Hoy, a través de nuestra Ruta de Empleabilidad y de nuestros proyectos dedicados a la niñez, transformamos la vida de personas con discapacidad, madres cuidadoras y niños, construyendo puentes hacia el trabajo digno, la autonomía y un futuro con propósito.",
+    "No somos solo una fundación; somos una familia que cree en la dignidad, la inclusión y la fuerza de cada ser humano para superar cualquier obstáculo. Si crees en el poder de dar y transformar, este también es tu hogar. Juntos, abrimos alas por un mejor mañana.",
   ],
   principles: [
     {

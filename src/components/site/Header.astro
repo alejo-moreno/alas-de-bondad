@@ -6,7 +6,7 @@ import { navigation } from "@/content/navigation";
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
-<header class="border-b border-border">
+<header class="bg-primary text-primary-foreground">
   <Container class="flex items-center justify-between gap-6 py-4">
     <a href="/" class="max-w-[14rem] font-serif text-lg leading-tight tracking-tight sm:max-w-none sm:text-xl">
       {site.name}
@@ -19,7 +19,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
             href={item.href}
             class:list={[
               "text-sm tracking-wide",
-              path === item.href ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+              path === item.href ? "font-medium underline decoration-2 underline-offset-8" : "hover:underline",
             ]}
             aria-current={path === item.href ? "page" : undefined}
           >
@@ -36,7 +36,7 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
         Menú
       </summary>
       <nav
-        class="absolute right-0 z-20 mt-3 w-56 border border-border bg-background p-4 shadow-sm"
+        class="menu absolute right-0 z-20 mt-3 w-56 border border-border bg-background p-4 text-foreground shadow-sm"
         aria-label="Principal"
       >
         <ul class="flex flex-col gap-1">
@@ -58,3 +58,13 @@ const path = Astro.url.pathname.replace(/\/$/, "") || "/";
     </details>
   </Container>
 </header>
+
+<style>
+  header :focus-visible {
+    outline-color: var(--primary-foreground);
+  }
+
+  header .menu :focus-visible {
+    outline-color: var(--ring);
+  }
+</style>
