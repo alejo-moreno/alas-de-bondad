@@ -1,0 +1,60 @@
+---
+import Container from "@/components/layout/Container.astro";
+import { site } from "@/config/site";
+import { navigation } from "@/content/navigation";
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<header class="border-b border-border">
+  <Container class="flex items-center justify-between gap-6 py-4">
+    <a href="/" class="max-w-[14rem] font-serif text-lg leading-tight tracking-tight sm:max-w-none sm:text-xl">
+      {site.name}
+    </a>
+
+    <nav class="hidden items-center gap-8 md:flex" aria-label="Principal">
+      {
+        navigation.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              "text-sm tracking-wide",
+              path === item.href ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+            ]}
+            aria-current={path === item.href ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <details class="relative md:hidden">
+      <summary
+        class="flex min-h-11 min-w-11 cursor-pointer list-none items-center justify-end text-sm tracking-wide marker:content-none [&::-webkit-details-marker]:hidden"
+      >
+        Menú
+      </summary>
+      <nav
+        class="absolute right-0 z-20 mt-3 w-56 border border-border bg-background p-4 shadow-sm"
+        aria-label="Principal"
+      >
+        <ul class="flex flex-col gap-1">
+          {
+            navigation.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="block min-h-11 px-2 py-2 text-base"
+                  aria-current={path === item.href ? "page" : undefined}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </details>
+  </Container>
+</header>

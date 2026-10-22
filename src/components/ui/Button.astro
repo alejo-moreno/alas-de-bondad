@@ -1,0 +1,39 @@
+---
+import { cx } from "@/lib/cx";
+
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "ghost" | "inverse";
+  class?: string;
+  type?: "button" | "submit";
+}
+
+const { href, variant = "primary", class: className, type = "button" } = Astro.props;
+
+const styles = {
+  primary:
+    "bg-primary text-primary-foreground hover:opacity-90",
+  secondary:
+    "border border-border bg-transparent text-foreground hover:bg-secondary",
+  ghost: "text-foreground underline-offset-4 hover:underline",
+  inverse: "bg-highlight text-highlight-foreground hover:opacity-90",
+} as const;
+
+const classes = cx(
+  "inline-flex min-h-11 items-center justify-center px-5 py-2 text-sm tracking-wide transition-opacity",
+  styles[variant],
+  className,
+);
+---
+
+{
+  href ? (
+    <a href={href} class={classes}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes}>
+      <slot />
+    </button>
+  )
+}

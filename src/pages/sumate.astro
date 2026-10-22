@@ -1,0 +1,123 @@
+---
+import HeroMinimal from "@/components/hero/HeroMinimal.astro";
+import ContactForm from "@/components/forms/ContactForm.astro";
+import Container from "@/components/layout/Container.astro";
+import Section from "@/components/layout/Section.astro";
+import Button from "@/components/ui/Button.astro";
+import WhatsAppCta from "@/components/site/WhatsAppCta.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { site } from "@/config/site";
+import { sumate } from "@/content/sumate";
+import { isPlaceholder, telHref } from "@/lib/links";
+
+const phoneLink = telHref(site.contact.phone);
+const emailReady = !isPlaceholder(site.contact.email);
+---
+
+<MainLayout title={sumate.seo.title} description={sumate.seo.description}>
+  <HeroMinimal eyebrow={sumate.hero.eyebrow} title={sumate.hero.title} lede={sumate.hero.lede} />
+
+  <Section>
+    <Container>
+      <div class="divide-y divide-border border-y border-border">
+        {
+          sumate.paths.map((item) => (
+            <article id={item.id} class="grid scroll-mt-24 gap-4 py-10 md:grid-cols-12 md:items-baseline">
+              <h2 class="font-serif text-3xl md:col-span-4">{item.title}</h2>
+              <div class="md:col-span-7 md:col-start-6">
+                <p class="max-w-prose text-lg text-pretty text-muted-foreground">{item.text}</p>
+                <div class="mt-6">
+                  <Button href={item.href} variant="ghost">
+                    {item.hrefLabel}
+                  </Button>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <Section id={sumate.donate.id} class="scroll-mt-24 bg-muted/60">
+    <Container class="grid gap-10 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <h2 class="text-3xl md:text-4xl">{sumate.donate.title}</h2>
+        <p class="mt-5 max-w-prose text-pretty text-muted-foreground">{sumate.donate.text}</p>
+      </div>
+      <div class="md:col-span-7">
+        <dl class="divide-y divide-border border-y border-border">
+          {
+            sumate.donate.details.map((row) => (
+              <div class="grid gap-1 py-5 md:grid-cols-12 md:items-baseline">
+                <dt class="text-sm text-muted-foreground md:col-span-3">{row.label}</dt>
+                <dd class="md:col-span-9">{row.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <div class="mt-8">
+          <Button href={sumate.donate.href} variant="ghost">
+            {sumate.donate.hrefLabel}
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+
+  <Section id="contacto" class="scroll-mt-24">
+    <Container class="grid gap-16 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <h2 class="text-3xl">{sumate.form.title}</h2>
+        <address class="mt-8 not-italic">
+          {
+            !isPlaceholder(site.location.address) && <p>{site.location.address}</p>
+          }
+          <p>
+            {site.location.city}
+            {site.location.region ? `, ${site.location.region}` : ""}
+            {site.location.country ? `, ${site.location.country}` : ""}
+          </p>
+          {
+            phoneLink ? (
+              <p class="mt-6">
+                <a href={phoneLink} class="underline underline-offset-4">
+                  {site.contact.phone}
+                </a>
+              </p>
+            ) : !isPlaceholder(site.contact.phone) ? (
+              <p class="mt-6">{site.contact.phone}</p>
+            ) : null
+          }
+          {
+            emailReady && (
+              <p class="mt-2">
+                <a href={`mailto:${site.contact.email}`} class="underline underline-offset-4">
+                  {site.contact.email}
+                </a>
+              </p>
+            )
+          }
+        </address>
+        {
+          site.hours.length > 0 && (
+            <ul class="mt-8 space-y-1 text-muted-foreground">
+              {site.hours.map((row) => (
+                <li>
+                  {row.days}: {row.time}
+                </li>
+              ))}
+            </ul>
+          )
+        }
+        <div class="mt-8">
+          <WhatsAppCta />
+        </div>
+      </div>
+      <div id={sumate.form.id} class="scroll-mt-24 md:col-span-7">
+        <p class="mb-6 text-muted-foreground">{sumate.form.intro}</p>
+        <ContactForm />
+      </div>
+    </Container>
+  </Section>
+</MainLayout>

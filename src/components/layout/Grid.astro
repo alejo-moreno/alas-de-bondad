@@ -1,0 +1,19 @@
+---
+import { cx } from "@/lib/cx";
+
+interface Props {
+  class?: string;
+  columns?: "2" | "3";
+}
+
+const columnsClass = {
+  "2": "sm:grid-cols-2",
+  "3": "sm:grid-cols-2 lg:grid-cols-3",
+} as const;
+
+const { class: className, columns = "2" } = Astro.props;
+---
+
+<div class={cx("grid gap-8", columnsClass[columns], className)}>
+  <slot />
+</div>

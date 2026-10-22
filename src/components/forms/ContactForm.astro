@@ -1,0 +1,49 @@
+---
+import { site } from "@/config/site";
+import { isPlaceholder } from "@/lib/links";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const formId = site.forms.tallyFormId;
+const configured = !isPlaceholder(formId);
+const emailReady = !isPlaceholder(site.contact.email);
+---
+
+<div class={className}>
+  {
+    configured ? (
+      <iframe
+        src={`https://tally.so/embed/${formId}?alignLeft=1&hideTitle=1&transparentBackground=1`}
+        title={`Formulario de ${site.name}`}
+        class="h-[32rem] w-full border-0"
+        loading="lazy"
+      />
+    ) : (
+      <div class="border border-dashed border-border p-6">
+        <p class="text-sm uppercase tracking-[0.14em] text-muted-foreground">
+          Formulario en preparación
+        </p>
+        <p class="mt-3 max-w-prose">
+          El formulario estará disponible pronto. Mientras tanto, si ya tienes un correo de la
+          fundación, escríbenos por ahí.
+        </p>
+        {
+          emailReady ? (
+            <p class="mt-5">
+              <a href={`mailto:${site.contact.email}`} class="underline underline-offset-4">
+                {site.contact.email}
+              </a>
+            </p>
+          ) : (
+            <p class="mt-5 text-muted-foreground">
+              El correo de contacto aún no está publicado. Usa Instagram o Facebook mientras tanto.
+            </p>
+          )
+        }
+      </div>
+    )
+  }
+</div>

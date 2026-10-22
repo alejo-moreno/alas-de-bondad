@@ -1,0 +1,21 @@
+---
+description: Client content honesty and typed content modules
+globs: "src/config/**,src/content/**"
+alwaysApply: false
+---
+
+# Content
+
+Client facts live in `src/config/site.ts` and `src/content/*.ts`. Components read those objects. Do not hard-code business data in chrome or sections.
+
+Do not invent awards, certifications, reviews, statistics, named clients, or addresses. Use placeholders:
+
+```ts
+phone: "[Phone]",
+address: "[Address]",
+email: "hello@studio.example",
+```
+
+If WhatsApp or Tally is empty, hide the control or show a labeled placeholder plus `mailto:`. Never fake a working form.
+
+Fictional demo copy for Casa Norte may describe the studio’s work. It may not claim real clients, press, or credentials.

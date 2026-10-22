@@ -1,0 +1,44 @@
+---
+import { Font } from "astro:assets";
+import Footer from "@/components/site/Footer.astro";
+import Header from "@/components/site/Header.astro";
+import JsonLd from "@/components/seo/JsonLd.astro";
+import Seo from "@/components/seo/Seo.astro";
+import { site } from "@/config/site";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  canonicalPath?: string;
+}
+
+const { title, description = site.description, canonicalPath } = Astro.props;
+---
+
+<!doctype html>
+<html lang={site.locale} data-theme={site.theme}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Font cssVariable="--font-heading" preload />
+    <Font cssVariable="--font-body" />
+    <Seo title={title} description={description} canonicalPath={canonicalPath} />
+    <JsonLd />
+  </head>
+  <body class="flex min-h-dvh flex-col bg-background text-foreground antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+    >
+      Saltar al contenido
+    </a>
+    <Header />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

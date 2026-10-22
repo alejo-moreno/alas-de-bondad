@@ -1,0 +1,83 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { cx } from "@/lib/cx";
+
+interface Props {
+  src: ImageMetadata | string;
+  alt: string;
+  class?: string;
+  width?: number;
+  height?: number;
+  loading?: "eager" | "lazy";
+  sizes?: string;
+  credit?: string;
+  creditHref?: string;
+}
+
+const {
+  src,
+  alt,
+  class: className,
+  width = 1200,
+  height = 840,
+  loading = "lazy",
+  sizes = "(min-width: 768px) 40vw, 100vw",
+  credit,
+  creditHref,
+} = Astro.props;
+
+const remote = typeof src === "string";
+---
+
+<figure class={cx("m-0", className)}>
+  {
+    remote ? (
+      <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={loading}
+        decoding="async"
+        class="h-auto w-full"
+      />
+    ) : src.format === "svg" ? (
+      <img
+        src={src.src}
+        alt={alt}
+        width={src.width || width}
+        height={src.height || height}
+        loading={loading}
+        decoding="async"
+        class="h-auto w-full"
+      />
+    ) : (
+      <Image
+        src={src}
+        alt={alt}
+        layout="constrained"
+        width={width}
+        height={height}
+        loading={loading}
+        sizes={sizes}
+        class="h-auto w-full"
+      />
+    )
+  }
+  {
+    credit && (
+      <figcaption class="mt-2 text-sm text-muted-foreground">
+        {
+          creditHref ? (
+            <a href={creditHref} class="underline underline-offset-4">
+              {credit}
+            </a>
+          ) : (
+            credit
+          )
+        }
+      </figcaption>
+    )
+  }
+</figure>

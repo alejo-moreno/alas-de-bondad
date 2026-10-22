@@ -1,0 +1,21 @@
+---
+import Container from "@/components/layout/Container.astro";
+import Section from "@/components/layout/Section.astro";
+import Button from "@/components/ui/Button.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+---
+
+<MainLayout title="Página no encontrada" description="Esa dirección no está en este sitio.">
+  <Section class="py-24 md:py-32">
+    <Container>
+      <p class="text-sm text-muted-foreground">404</p>
+      <h1 class="mt-4 max-w-xl text-4xl">Esta página no existe.</h1>
+      <p class="mt-5 max-w-prose text-muted-foreground">
+        Es posible que la dirección esté incompleta o que el contenido se haya movido.
+      </p>
+      <div class="mt-8">
+        <Button href="/">Volver al inicio</Button>
+      </div>
+    </Container>
+  </Section>
+</MainLayout>

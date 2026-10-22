@@ -1,0 +1,34 @@
+---
+import { site, themeColors } from "@/config/site";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalPath?: string;
+}
+
+const { title, description, canonicalPath = Astro.url.pathname } = Astro.props;
+const pageTitle = title === site.name ? site.name : `${title} · ${site.name}`;
+const canonical = new URL(canonicalPath, site.url).href;
+const themeColor = themeColors[site.theme];
+const ogImage = site.ogImage ? new URL(site.ogImage, site.url).href : undefined;
+---
+
+<title>{pageTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content="index,follow" />
+<meta name="theme-color" content={themeColor} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={site.locale === "en" ? "en_US" : site.locale === "es" ? "es_CO" : site.locale} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+
+<meta name="twitter:card" content={ogImage ? "summary_large_image" : "summary"} />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={description} />
+{ogImage && <meta name="twitter:image" content={ogImage} />}

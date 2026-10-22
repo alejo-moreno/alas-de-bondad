@@ -1,0 +1,13 @@
+---
+import { cx } from "@/lib/cx";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class={cx("border border-border bg-card p-6 text-card-foreground", className)}>
+  <slot />
+</div>

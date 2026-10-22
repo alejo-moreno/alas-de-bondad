@@ -1,0 +1,48 @@
+---
+import HeroMinimal from "@/components/hero/HeroMinimal.astro";
+import Container from "@/components/layout/Container.astro";
+import Section from "@/components/layout/Section.astro";
+import Stack from "@/components/layout/Stack.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { nosotros } from "@/content/nosotros";
+---
+
+<MainLayout title={nosotros.seo.title} description={nosotros.seo.description}>
+  <HeroMinimal
+    eyebrow={nosotros.hero.eyebrow}
+    title={nosotros.hero.title}
+    lede={nosotros.hero.lede}
+  />
+
+  <Section>
+    <Container class="grid gap-16 md:grid-cols-12">
+      <Stack gap="lg" class="md:col-span-7">
+        {
+          nosotros.body.map((paragraph) => (
+            <p class="text-lg text-pretty">{paragraph}</p>
+          ))
+        }
+      </Stack>
+      <ol class="md:col-span-5 md:pt-2">
+        {
+          nosotros.principles.map((item, index) => (
+            <li class="border-t border-border py-6 first:border-t-0 first:pt-0">
+              <p class="text-sm text-muted-foreground">{String(index + 1).padStart(2, "0")}</p>
+              <h2 class="mt-2 font-serif text-2xl">{item.title}</h2>
+              <p class="mt-3 text-muted-foreground">{item.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </Container>
+  </Section>
+
+  <Section class="border-t border-border">
+    <Container class="grid gap-8 md:grid-cols-12">
+      <h2 class="text-3xl md:col-span-5">{nosotros.territory.title}</h2>
+      <p class="max-w-prose text-lg text-pretty text-muted-foreground md:col-span-7">
+        {nosotros.territory.text}
+      </p>
+    </Container>
+  </Section>
+</MainLayout>

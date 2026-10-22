@@ -1,0 +1,43 @@
+---
+description: Design system and visual composition rules
+alwaysApply: true
+---
+
+# Design system
+
+Use tokens in `src/styles/global.css` and layout primitives before inventing new visual patterns.
+
+Do not produce generic AI aesthetics.
+
+Avoid:
+
+- Giant gradient heroes, glassmorphism, blobs, purple SaaS palettes
+- Identical 3-column card grids, logo clouds, meaningless stats
+- Every section centered or wrapped in a card
+- Excessive radius, shadows, pills, or animation
+
+Prefer:
+
+- Strong typography and whitespace
+- Asymmetric or editorial compositions
+- Section-to-section variation that matches the business
+- Real or abstract architectural imagery, not stock-photo heroes
+
+Example:
+
+```astro
+<!-- ❌ -->
+<section class="bg-gradient-to-r from-purple-500 to-blue-500 py-32 text-center">
+  <div class="grid md:grid-cols-3">{/* three identical cards */}</div>
+</section>
+
+<!-- ✅ -->
+<Section>
+  <Split>
+    <h1>…</h1>
+    <p>…</p>
+  </Split>
+</Section>
+```
+
+When adding a component, first check whether an existing one already solves it.

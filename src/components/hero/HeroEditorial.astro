@@ -1,0 +1,111 @@
+---
+import type { ImageMetadata } from "astro";
+import Container from "@/components/layout/Container.astro";
+import Section from "@/components/layout/Section.astro";
+import Split from "@/components/layout/Split.astro";
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
+import Figure from "@/components/ui/Figure.astro";
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede: string;
+  primaryCta?: { href: string; label: string };
+  secondaryCta?: { href: string; label: string };
+  aside?: string;
+  image?: ImageMetadata | string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  /** `wide` spans the container below the text; use it for panoramic photos. */
+  imageLayout?: "side" | "wide";
+  imageCredit?: string;
+  imageCreditHref?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  lede,
+  primaryCta,
+  secondaryCta,
+  aside,
+  image,
+  imageAlt = "",
+  imageWidth,
+  imageHeight,
+  imageLayout = "side",
+  imageCredit,
+  imageCreditHref,
+} = Astro.props;
+
+const sideImage = imageLayout === "side" ? image : undefined;
+const wideImage = imageLayout === "wide" ? image : undefined;
+---
+
+<Section class="pt-16 md:pt-28">
+  <Container>
+    <Split align="end">
+      <Fragment slot="primary">
+        {eyebrow && <Badge>{eyebrow}</Badge>}
+        <h1 class="mt-5 max-w-xl text-4xl text-balance md:text-6xl">{title}</h1>
+        <p class="mt-6 max-w-xl text-lg text-pretty text-muted-foreground">{lede}</p>
+        {
+          (primaryCta || secondaryCta) && (
+            <div class="mt-8 flex flex-wrap gap-3">
+              {primaryCta && <Button href={primaryCta.href}>{primaryCta.label}</Button>}
+              {secondaryCta && (
+                <Button href={secondaryCta.href} variant="secondary">
+                  {secondaryCta.label}
+                </Button>
+              )}
+            </div>
+          )
+        }
+      </Fragment>
+      {
+        (sideImage || aside) && (
+          <div slot="secondary" class="flex flex-col gap-8 md:mt-24">
+            {
+              sideImage && (
+                <Figure
+                  src={sideImage}
+                  alt={imageAlt}
+                  width={imageWidth}
+                  height={imageHeight}
+                  credit={imageCredit}
+                  creditHref={imageCreditHref}
+                  loading="eager"
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                />
+              )
+            }
+            {
+              aside && (
+                <p class="max-w-sm border-l border-border pl-5 text-sm leading-relaxed text-muted-foreground">
+                  {aside}
+                </p>
+              )
+            }
+          </div>
+        )
+      }
+    </Split>
+    {
+      wideImage && (
+        <Figure
+          src={wideImage}
+          alt={imageAlt}
+          width={imageWidth}
+          height={imageHeight}
+          credit={imageCredit}
+          creditHref={imageCreditHref}
+          loading="eager"
+          sizes="(min-width: 1152px) 1152px, 100vw"
+          class="mt-12 md:mt-16"
+        />
+      )
+    }
+  </Container>
+</Section>

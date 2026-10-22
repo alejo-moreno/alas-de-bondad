@@ -1,0 +1,95 @@
+---
+import Container from "@/components/layout/Container.astro";
+import WhatsAppCta from "@/components/site/WhatsAppCta.astro";
+import { site } from "@/config/site";
+import { navigation } from "@/content/navigation";
+import { isPlaceholder, telHref } from "@/lib/links";
+
+const phoneLink = telHref(site.contact.phone);
+const emailReady = !isPlaceholder(site.contact.email);
+const year = new Date().getFullYear();
+const cityLine = [site.location.city, site.location.region, site.location.country]
+  .filter((part) => part && !isPlaceholder(part))
+  .join(", ");
+---
+
+<footer class="mt-auto border-t border-border">
+  <Container class="grid gap-10 py-14 md:grid-cols-12">
+    <div class="md:col-span-5">
+      <p class="font-serif text-2xl">{site.name}</p>
+      <p class="mt-3 max-w-sm text-muted-foreground">{site.tagline}</p>
+      <div class="mt-6">
+        <WhatsAppCta />
+      </div>
+    </div>
+
+    <div class="md:col-span-3">
+      <p class="text-sm text-muted-foreground">Ir a</p>
+      <ul class="mt-3 space-y-1">
+        {navigation.map((item) => (
+          <li>
+            <a href={item.href} class="hover:underline">{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="md:col-span-4">
+      <p class="text-sm text-muted-foreground">Contacto</p>
+      <address class="mt-3 not-italic text-pretty">
+        {!isPlaceholder(site.location.address) && <p>{site.location.address}</p>}
+        {cityLine && <p>{cityLine}</p>}
+        {
+          phoneLink ? (
+            <p class="mt-3">
+              <a href={phoneLink} class="hover:underline">
+                {site.contact.phone}
+              </a>
+            </p>
+          ) : !isPlaceholder(site.contact.phone) ? (
+            <p class="mt-3">{site.contact.phone}</p>
+          ) : null
+        }
+        {
+          emailReady && (
+            <p>
+              <a href={`mailto:${site.contact.email}`} class="hover:underline">
+                {site.contact.email}
+              </a>
+            </p>
+          )
+        }
+      </address>
+      {
+        site.hours.length > 0 && (
+          <ul class="mt-4 space-y-1 text-sm text-muted-foreground">
+            {site.hours.map((row) => (
+              <li>
+                {row.days}: {row.time}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+      <p class="mt-4 flex flex-wrap gap-x-4 gap-y-1">
+        {
+          !isPlaceholder(site.social.instagram) && (
+            <a href={site.social.instagram} class="hover:underline">
+              Instagram
+            </a>
+          )
+        }
+        {
+          !isPlaceholder(site.social.facebook) && (
+            <a href={site.social.facebook} class="hover:underline">
+              Facebook
+            </a>
+          )
+        }
+      </p>
+    </div>
+  </Container>
+  <Container class="border-t border-border py-6 text-sm text-muted-foreground">
+    <p>© {year} {site.name}.</p>
+  </Container>
+</footer>

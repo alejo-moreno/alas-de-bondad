@@ -1,0 +1,30 @@
+---
+description: Astro static-first component and JavaScript rules
+globs: "**/*.{astro,ts,mjs}"
+alwaysApply: false
+---
+
+# Astro
+
+Prefer Astro components, semantic HTML, and CSS. Ship almost no client JavaScript.
+
+Do not add React, `@astrojs/react`, or shadcn React primitives.
+
+Interactive patterns to use instead:
+
+- Navigation and FAQ: `<details>` / `<summary>`
+- Dialogs: native `<dialog>` plus a few lines of vanilla JS if required
+- Forms: Tally embed from `site.forms.tallyFormId`, not a custom backend
+
+```astro
+<!-- ❌ -->
+<MobileNav client:load />
+
+<!-- ✅ -->
+<details>
+  <summary>Menu</summary>
+  <nav>…</nav>
+</details>
+```
+
+Keep `wrangler.jsonc` assets-only: `assets.directory` and `not_found_handling`. Do not add `main` or `@astrojs/cloudflare`.

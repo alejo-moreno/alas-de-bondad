@@ -1,0 +1,55 @@
+---
+import HeroMinimal from "@/components/hero/HeroMinimal.astro";
+import Container from "@/components/layout/Container.astro";
+import Section from "@/components/layout/Section.astro";
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { labor } from "@/content/labor";
+---
+
+<MainLayout title={labor.seo.title} description={labor.seo.description}>
+  <HeroMinimal eyebrow={labor.hero.eyebrow} title={labor.hero.title} lede={labor.hero.lede} />
+
+  <Section>
+    <Container>
+      <div class="flex flex-col gap-16">
+        {
+          labor.offerings.map((item) => (
+            <article class="grid gap-4 border-l border-border pl-6 md:grid-cols-12 md:border-l-0 md:pl-0">
+              <h2 class="font-serif text-3xl md:col-span-4">{item.title}</h2>
+              <p class="max-w-prose text-lg text-pretty text-muted-foreground md:col-span-7 md:col-start-6">
+                {item.text}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <Section class="bg-muted/60">
+    <Container class="grid gap-10 md:grid-cols-12">
+      <div class="md:col-span-5">
+        <Badge>{labor.inclusion.eyebrow}</Badge>
+        <h2 class="mt-4 text-3xl md:text-4xl">{labor.inclusion.title}</h2>
+      </div>
+      <div class="max-w-prose md:col-span-7">
+        <p class="text-lg text-pretty text-muted-foreground">{labor.inclusion.text}</p>
+        <p class="mt-6 text-pretty">{labor.inclusion.note}</p>
+      </div>
+    </Container>
+  </Section>
+
+  <Section class="border-t border-border">
+    <Container class="grid gap-8 md:grid-cols-12">
+      <h2 class="text-3xl md:col-span-5">{labor.building.title}</h2>
+      <div class="md:col-span-7">
+        <p class="max-w-prose text-lg text-pretty text-muted-foreground">{labor.building.text}</p>
+        <div class="mt-8">
+          <Button href={labor.building.href} variant="ghost">{labor.building.hrefLabel}</Button>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</MainLayout>
