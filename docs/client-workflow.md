@@ -5,7 +5,7 @@ Use Taller as the factory. Do not add React, a CMS, a database, or the Cloudflar
 1. Duplicate the repository and rename the project in `package.json` and `wrangler.jsonc` (`name` must match the Worker name in the Cloudflare dashboard). For this site, that name is `alas-de-bondad`.
 2. Replace identity in `src/config/site.ts`: name, tagline, description, `url`, theme, contact, location, hours, social, WhatsApp, `forms.tallyFormId`.
 3. Replace copy in `src/content/*.ts`. Leave `[placeholders]` where facts are missing. Do not invent awards, reviews, statistics, or named clients.
-4. Swap `public/favicon.svg` and images under `src/assets`.
+4. Swap `public/favicon.ico` and images under `src/assets`.
 5. Set `theme` to `editorial`, `warm`, `professional`, `minimal`, or `alas`.
 6. Compose pages from the layout primitives. Do not reuse Casa Norte’s section order if it does not fit the business.
 7. Point `site.url` at the production origin so the sitemap and canonical URLs are correct.

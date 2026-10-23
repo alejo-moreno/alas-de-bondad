@@ -83,7 +83,8 @@
 [data-theme="alas"] {
   --background: oklch(0.985 0.006 250);
   --foreground: oklch(0.24 0.06 264);
-  --primary: oklch(0.43 0.13 262);
+  /* Official logo field. Hex so the cropped mark blends into surfaces painted with it. */
+  --primary: #003d76;
   --primary-foreground: oklch(0.99 0.003 250);
   --secondary: oklch(0.95 0.022 245);
   --secondary-foreground: oklch(0.24 0.06 264);
@@ -94,7 +95,7 @@
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.24 0.06 264);
   --border: oklch(0.89 0.018 250);
-  --ring: oklch(0.43 0.13 262);
+  --ring: #003d76;
   --highlight: oklch(0.84 0.135 82);
   --highlight-foreground: oklch(0.24 0.06 264);
   --radius: 0.25rem;
