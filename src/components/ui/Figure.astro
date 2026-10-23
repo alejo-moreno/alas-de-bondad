@@ -13,6 +13,7 @@ interface Props {
   sizes?: string;
   credit?: string;
   creditHref?: string;
+  imageClass?: string;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
   sizes = "(min-width: 768px) 40vw, 100vw",
   credit,
   creditHref,
+  imageClass = "h-auto w-full",
 } = Astro.props;
 
 const remote = typeof src === "string";
@@ -40,7 +42,7 @@ const remote = typeof src === "string";
         height={height}
         loading={loading}
         decoding="async"
-        class="h-auto w-full"
+        class={imageClass}
       />
     ) : src.format === "svg" ? (
       <img
@@ -50,7 +52,7 @@ const remote = typeof src === "string";
         height={src.height || height}
         loading={loading}
         decoding="async"
-        class="h-auto w-full"
+        class={imageClass}
       />
     ) : (
       <Image
@@ -61,7 +63,7 @@ const remote = typeof src === "string";
         height={height}
         loading={loading}
         sizes={sizes}
-        class="h-auto w-full"
+        class={imageClass}
       />
     )
   }

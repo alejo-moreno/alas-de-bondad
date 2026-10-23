@@ -1,46 +1,84 @@
 export const labor = {
   seo: {
-    title: "Labor",
+    title: "Informe 2025",
     description:
-      "Apoyo, formación, generación de ingresos e inclusión laboral para personas con discapacidad y sus familias en Cundinamarca.",
+      "Entregas e inversión de la Fundación Alas de Bondad en 2025: regalos, kits, almuerzos inclusivos, mercados familiares y el resumen de la inversión.",
   },
   hero: {
-    eyebrow: "Qué hacemos",
-    title: "Acompañar, formar e incluir — desde el municipio.",
-    lede: "Algunos programas ya están en marcha; otros los estamos construyendo. Aquí está lo que hacemos hoy y hacia dónde vamos, sin inflar resultados.",
+    eyebrow: "Informe 2025",
+    title: "Lo que se entregó y en qué se invirtió.",
+    lede: "Estas son las entregas y la inversión registradas en 2025.",
+    image: "labor/labor.jpeg",
+    imageAlt:
+      "Tres integrantes de la Fundación Alas de Bondad, con camisetas azules, organizan kits escolares, colores y regalos en una sala.",
+    imageWidth: 1200,
+    imageHeight: 1600,
+    secondaryImage: "labor/labor-2.jpg",
+    secondaryImageAlt:
+      "Una integrante de la fundación, con camiseta azul, acompaña a una niña en silla de ruedas, vestida de blanco, junto a una carretera.",
+    secondaryImageWidth: 1200,
+    secondaryImageHeight: 1600,
   },
-  offerings: [
-    {
-      title: "Apoyo y orientación",
-      text: "Un lugar al que llegar cuando se necesita información, escucha o una primera ruta. Atendemos a personas con discapacidad, cuidadores y familias.",
-    },
-    {
-      title: "Formación",
-      text: "Espacios para fortalecer capacidades: de quien busca incluirse, de quien cuida, y de la familia que sostiene el día a día.",
-    },
-    {
-      title: "Generación de ingresos",
-      text: "Buscamos alternativas para que las familias puedan mejorar su sustento. Los detalles de cada iniciativa se publicarán cuando estén listos.",
-    },
-    {
-      title: "Inclusión laboral",
-      text: "Acercamos oportunidades de trabajo y permanencia a jóvenes y adultos con discapacidad de Madrid y los municipios vecinos.",
-    },
-    {
-      title: "Acompañamiento a familias",
-      text: "El cuidado no termina en una inscripción. Seguimos cerca cuando las necesidades afectan el bienestar de toda la casa.",
-    },
-  ],
+  deliveries: {
+    title: "Impacto social y unidades entregadas",
+    items: [
+      {
+        amount: "385",
+        text: "Regalos de Navidad a niños y niñas en Bogotá y Madrid.",
+      },
+      {
+        amount: "306",
+        text: "Kits de aseo para personas habitantes de calle y fundaciones de resocialización.",
+      },
+      {
+        amount: "150",
+        text: "Almuerzos inclusivos en eventos comunitarios para personas con discapacidad.",
+      },
+      {
+        amount: "100",
+        text: "Kits escolares para garantizar el acceso y la permanencia educativa.",
+      },
+      {
+        amount: "70",
+        text: "Kits de cuidado personal entregados a madres cuidadoras en reconocimiento a su labor.",
+      },
+      {
+        amount: "15",
+        text: "Mercados familiares dirigidos a hogares vulnerables.",
+      },
+    ],
+  },
+  markets: {
+    title: "Distribución del programa de mercados",
+    text: "Detalle de los 15 mercados familiares, según el tipo de hogar.",
+    columns: ["Tipo de población", "Mercados", "Beneficiarios únicos", "Inversión (COP)"],
+    rows: [
+      ["Madres cuidadoras", "6", "4", "$2.745.249"],
+      ["Madres solteras / cabeza de familia", "4", "2", "$2.280.703"],
+      ["Madres de familia", "3", "3", "$1.114.031"],
+      ["Padres de familia", "2", "1", "$997.580"],
+    ],
+    total: ["Total", "15", "10", "$7.137.563"],
+  },
   inclusion: {
     eyebrow: "Inclusión laboral",
     title: "El trabajo también tiene que poder empezar aquí.",
     text: "Hay organizaciones valiosas, muchas de ellas en Bogotá o cerca de la capital. Para familias de Madrid, Funza, Mosquera y Facatativá, esa distancia sigue siendo una barrera. Nuestra labor es fortalecer la atención y las oportunidades de inclusión desde Cundinamarca, y crecer hacia municipios cercanos.",
     note: "La alianza con Best Buddies nos ha permitido acercarnos a procesos de inclusión laboral. El siguiente paso es que más jóvenes de esta región puedan acceder y permanecer.",
   },
-  building: {
-    title: "Lo que estamos construyendo",
-    text: "Los programas y proyectos se irán describiendo aquí cuando tengamos hechos, no promesas. Si buscas un recurso, una guía o el estado de una convocatoria, escríbenos: te decimos lo que sí podemos ofrecer ahora.",
-    href: "/sumate#apoyo",
-    hrefLabel: "Preguntar por un programa",
+  investment: {
+    title: "Resumen ejecutivo de inversión 2025",
+    text: "La fila del programa de mercados corresponde a los $7.137.563 de la tabla anterior.",
+    columns: ["Rubro", "Inversión (COP)", "% del total"],
+    rows: [
+      ["Donaciones varias y actividades sociales", "$15.349.319", "51.7%"],
+      ["Programa de entrega de mercados", "$7.137.563", "24.0%"],
+      ["Apoyo operativo y logístico (personal)", "$3.463.000", "11.7%"],
+      ["Gastos de funcionamiento administrativo", "$1.858.080", "6.2%"],
+      ["Gastos logísticos (transporte y alimentación)", "$1.903.600", "6.4%"],
+    ],
+    total: ["Total invertido", "$29.711.562", "100%"],
+    href: "/sumate",
+    hrefLabel: "Cómo sumarte",
   },
 } as const;

@@ -6,27 +6,107 @@ import Button from "@/components/ui/Button.astro";
 import Badge from "@/components/ui/Badge.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { labor } from "@/content/labor";
+import { image } from "@/lib/images";
+
+const tables = [
+  { id: "mercados", ...labor.markets },
+  { id: "inversion", ...labor.investment },
+] as const;
 ---
 
 <MainLayout title={labor.seo.title} description={labor.seo.description}>
-  <HeroMinimal eyebrow={labor.hero.eyebrow} title={labor.hero.title} lede={labor.hero.lede} />
+  <HeroMinimal
+    eyebrow={labor.hero.eyebrow}
+    title={labor.hero.title}
+    lede={labor.hero.lede}
+    image={image(labor.hero.image)}
+    imageAlt={labor.hero.imageAlt}
+    imageWidth={labor.hero.imageWidth}
+    imageHeight={labor.hero.imageHeight}
+    secondaryImage={image(labor.hero.secondaryImage)}
+    secondaryImageAlt={labor.hero.secondaryImageAlt}
+    secondaryImageWidth={labor.hero.secondaryImageWidth}
+    secondaryImageHeight={labor.hero.secondaryImageHeight}
+  />
 
   <Section>
     <Container>
-      <div class="flex flex-col gap-16">
+      <h2 class="max-w-xl text-3xl md:text-4xl">{labor.deliveries.title}</h2>
+      <ol class="mt-12 divide-y divide-border border-y border-border">
         {
-          labor.offerings.map((item) => (
-            <article class="grid gap-4 border-l border-border pl-6 md:grid-cols-12 md:border-l-0 md:pl-0">
-              <h2 class="font-serif text-3xl md:col-span-4">{item.title}</h2>
-              <p class="max-w-prose text-lg text-pretty text-muted-foreground md:col-span-7 md:col-start-6">
+          labor.deliveries.items.map((item) => (
+            <li class="grid gap-2 py-8 md:grid-cols-12 md:items-baseline md:gap-4">
+              <p class="font-serif text-3xl tabular-nums md:col-span-3">{item.amount}</p>
+              <p class="max-w-prose text-lg text-pretty text-muted-foreground md:col-span-8 md:col-start-5">
                 {item.text}
               </p>
-            </article>
+            </li>
           ))
         }
-      </div>
+      </ol>
     </Container>
   </Section>
+
+  {
+    tables.map((table) => (
+      <Section id={table.id} class={table.id === "inversion" ? "border-t border-border" : undefined}>
+        <Container>
+          <div class="max-w-xl">
+            <h2 id={`${table.id}-title`} class="text-3xl md:text-4xl">{table.title}</h2>
+            <p class="mt-5 text-pretty text-muted-foreground">{table.text}</p>
+          </div>
+          <div class="mt-10 overflow-x-auto">
+            <table class="w-full min-w-[40rem] border-collapse text-left" aria-labelledby={`${table.id}-title`}>
+              <thead>
+                <tr class="border-b border-border text-sm text-muted-foreground">
+                  {table.columns.map((column, index) => (
+                    <th scope="col" class:list={["py-3 pr-4 font-medium", index > 0 && "text-right"]}>
+                      {column}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {table.rows.map((row) => (
+                  <tr class="border-b border-border">
+                    {row.map((cell, index) =>
+                      index === 0 ? (
+                        <th scope="row" class="py-4 pr-4 font-normal">
+                          {cell}
+                        </th>
+                      ) : (
+                        <td class="py-4 pr-4 text-right tabular-nums">{cell}</td>
+                      ),
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr class="border-b border-border font-medium">
+                  {table.total.map((cell, index) =>
+                    index === 0 ? (
+                      <th scope="row" class="py-4 pr-4">
+                        {cell}
+                      </th>
+                    ) : (
+                      <td class="py-4 pr-4 text-right tabular-nums">{cell}</td>
+                    ),
+                  )}
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          {"href" in table && (
+            <div class="mt-8">
+              <Button href={table.href} variant="ghost">
+                {table.hrefLabel}
+              </Button>
+            </div>
+          )}
+        </Container>
+      </Section>
+    ))
+  }
 
   <Section class="bg-muted/60">
     <Container class="grid gap-10 md:grid-cols-12">
@@ -37,18 +117,6 @@ import { labor } from "@/content/labor";
       <div class="max-w-prose md:col-span-7">
         <p class="text-lg text-pretty text-muted-foreground">{labor.inclusion.text}</p>
         <p class="mt-6 text-pretty">{labor.inclusion.note}</p>
-      </div>
-    </Container>
-  </Section>
-
-  <Section class="border-t border-border">
-    <Container class="grid gap-8 md:grid-cols-12">
-      <h2 class="text-3xl md:col-span-5">{labor.building.title}</h2>
-      <div class="md:col-span-7">
-        <p class="max-w-prose text-lg text-pretty text-muted-foreground">{labor.building.text}</p>
-        <div class="mt-8">
-          <Button href={labor.building.href} variant="ghost">{labor.building.hrefLabel}</Button>
-        </div>
       </div>
     </Container>
   </Section>
