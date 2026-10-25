@@ -21,7 +21,7 @@ export const site = {
   tagline: "Bienestar y esperanza para quienes más lo necesitan",
   description:
     "Fundación Alas de Bondad trabaja por el bienestar y la inclusión social y laboral de personas con discapacidad, madres cuidadoras, niños y familias en Madrid, Funza, Mosquera, Facatativá y Cundinamarca.",
-  url: "https://example.com",
+  url: "https://alas-de-bondad.workers.dev/",
   locale: "es",
   theme: "alas" as ThemeName,
   schemaType: "Organization" as SchemaType,
