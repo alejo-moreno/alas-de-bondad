@@ -32,4 +32,36 @@ export const nosotros = {
     title: "Dónde trabajamos",
     text: "Nuestra base está en Madrid, Funza, Mosquera y Facatativá, Cundinamarca. Buscamos ampliar el trabajo hacia otros municipios y regiones de Colombia mediante alianzas y proyectos.",
   },
+  documents: {
+    id: "documentos",
+    title: "Documentación legal",
+    text: "Documentos públicos de la fundación como entidad sin ánimo de lucro.",
+    items: [
+      {
+        title: "Certificado de Cámara de Comercio",
+        detail: "Expedido el 28 de mayo de 2026.",
+        href: "/documentos/certificado-camara-y-comercio.pdf",
+      },
+      {
+        title: "Estados financieros 2025",
+        detail: "Estados financieros del año 2025.",
+        href: "/documentos/estados-financieros-2025.pdf",
+      },
+      {
+        title: "Notas a los estados financieros 2025",
+        detail: "Notas que acompañan los estados financieros de 2025.",
+        href: "/documentos/notas-estados-financieros-2025.pdf",
+      },
+      {
+        title: "Calificación ESAL",
+        detail: "Documento de la DIAN: contribuyente del régimen tributario.",
+        href: "/documentos/calificacion-esal.pdf",
+      },
+      {
+        title: "Certificación de antecedentes judiciales",
+        detail: "Certificación del representante legal.",
+        href: "/documentos/certificacion-antecedentes-representante-legal.pdf",
+      },
+    ],
+  },
 } as const;

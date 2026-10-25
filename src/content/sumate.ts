@@ -35,11 +35,11 @@ export const sumate = {
   donate: {
     id: "donar",
     title: "Cómo donar",
-    text: "Aún no tenemos un pago en línea. Cuando los datos estén confirmados, aparecerán aquí. Mientras tanto puedes pedir información de donaciones en el formulario.",
+    text: "Puedes consignar a la cuenta de ahorros de la fundación. El pago en línea todavía no está disponible.",
     details: [
-      { label: "Banco", value: "[Banco]" },
-      { label: "Cuenta", value: "[Cuenta]" },
-      { label: "Nequi", value: "[Nequi]" },
+      { label: "Banco", value: "BBVA Colombia" },
+      { label: "Tipo de cuenta", value: "Ahorros empresarial" },
+      { label: "Número", value: "00130209000200008344" },
     ],
     href: "#apoyo",
     hrefLabel: "Pedir información para donar",
