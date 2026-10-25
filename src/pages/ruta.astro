@@ -1,0 +1,74 @@
+---
+import HeroMinimal from "@/components/hero/HeroMinimal.astro";
+import Container from "@/components/layout/Container.astro";
+import Section from "@/components/layout/Section.astro";
+import Button from "@/components/ui/Button.astro";
+import Badge from "@/components/ui/Badge.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { ruta } from "@/content/ruta";
+
+const routes = [ruta.people, ruta.companies] as const;
+---
+
+<MainLayout title={ruta.seo.title} description={ruta.seo.description}>
+  <HeroMinimal eyebrow={ruta.hero.eyebrow} title={ruta.hero.title} lede={ruta.hero.lede} />
+
+  <div class="border-b border-border">
+    <Container class="flex flex-wrap gap-x-8 gap-y-2 py-4">
+      <nav class="flex flex-wrap gap-x-8 gap-y-2" aria-label="Rutas">
+        {
+          ruta.jumps.map((item) => (
+            <a href={item.href} class="text-sm tracking-wide underline-offset-4 hover:underline">
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </Container>
+  </div>
+
+  {
+    routes.map((route, routeIndex) => (
+      <Section id={route.id} class:list={["scroll-mt-24", routeIndex === 1 && "bg-muted/60"]}>
+        <Container>
+          <div class="max-w-xl">
+            <Badge>{route.eyebrow}</Badge>
+            <h2 class="mt-4 text-3xl md:text-4xl">{route.title}</h2>
+            <p class="mt-5 text-pretty text-muted-foreground">{route.lede}</p>
+          </div>
+          <ol class="mt-12 divide-y divide-border border-y border-border">
+            {route.steps.map((step, index) => (
+              <li class="grid gap-4 py-8 md:grid-cols-12 md:items-baseline">
+                <p class="text-sm text-muted-foreground md:col-span-2">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <h3 class="font-serif text-2xl md:col-span-4">{step.title}</h3>
+                <div class="md:col-span-6">
+                  <p class="text-pretty text-muted-foreground">{step.text}</p>
+                  {"paths" in step && (
+                    <ul class="mt-6 space-y-5">
+                      {step.paths.map((path) => (
+                        <li>
+                          <p class="font-serif text-xl">{path.title}</p>
+                          <p class="mt-2 text-pretty text-muted-foreground">{path.text}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {"note" in step && <p class="mt-6 text-pretty">{step.note}</p>}
+                  {"href" in step && (
+                    <p class="mt-6">
+                      <Button href={step.href} variant="ghost">
+                        {step.hrefLabel}
+                      </Button>
+                    </p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </Container>
+      </Section>
+    ))
+  }
+</MainLayout>
