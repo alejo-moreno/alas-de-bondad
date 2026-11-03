@@ -14,6 +14,9 @@ interface Props {
   credit?: string;
   creditHref?: string;
   imageClass?: string;
+  /** Keep scannable graphics (QR) as PNG instead of the default WebP. */
+  format?: "png" | "webp" | "avif" | "jpeg" | "jpg";
+  quality?: number | "low" | "mid" | "high" | "max";
 }
 
 const {
@@ -27,9 +30,15 @@ const {
   credit,
   creditHref,
   imageClass = "h-auto w-full",
+  format,
+  quality,
 } = Astro.props;
 
 const remote = typeof src === "string";
+const transform = {
+  ...(format ? { format } : {}),
+  ...(quality !== undefined ? { quality } : {}),
+};
 ---
 
 <figure class={cx("m-0", className)}>
@@ -64,6 +73,7 @@ const remote = typeof src === "string";
         loading={loading}
         sizes={sizes}
         class={imageClass}
+        {...transform}
       />
     )
   }

@@ -35,12 +35,17 @@ export const sumate = {
   donate: {
     id: "donar",
     title: "Cómo donar",
-    text: "Puedes consignar a la cuenta de ahorros de la fundación. El pago en línea todavía no está disponible.",
+    text: "Puedes consignar a la cuenta de ahorros de la fundación o pagar con el código QR de Bre-B. El código se escanea con la app del banco.",
     details: [
       { label: "Banco", value: "BBVA Colombia" },
       { label: "Tipo de cuenta", value: "Ahorros empresarial" },
       { label: "Número", value: "00130209000200008344" },
     ],
+    image: "sumate/qr-breb.png",
+    imageAlt:
+      "Afiche para donar con código QR de Bre-B y BBVA a nombre de Fundación Alas de Bondad. Los pasos son ingresar a la billetera del banco, escanear el código y digitar el monto.",
+    imageWidth: 1080,
+    imageHeight: 1920,
     href: "#apoyo",
     hrefLabel: "Pedir información para donar",
   },
